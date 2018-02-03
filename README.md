@@ -1,5 +1,5 @@
 # Linux-Server-Configuration
-In This project i will describe how to configure your linux-server and how to enable remote access to your server, how to enable firewall, how enable web-server service and finnaly how to change port number of some ports like ssh.
+In This project i will describe how to configure your linux-server and how to enable remote access to your server, how to enable firewall, how enable web-server service and finnaly how to change time-zone.
 
 # Steps
 1- First:you will need to install git from this site https://git-scm.com/downloads
@@ -51,17 +51,9 @@ sudo service ssh restart
 
 ssh -i "private-key" grader@ip-address-of-server
 
-7- now will start change port of service ssh 
+7- now i will enable firewall
 
-sudo nano /etc/ssh/sshd_config 
-
-now reload ssh service again
-
-sudo service ssh restart
-
-8- now i will enable firewall
-
-sudo ufw allow 2200/tcp
+sudo ufw allow 22/tcp
 
 sudo ufw allow 80/tcp
 
@@ -71,20 +63,20 @@ sudo ufw enable
 
 now i can change port 22 to 2200 for example and test it again.
 
-9- i can also change time zone of server 
+8- i can also change time zone of server 
 
 sudo dpkg-reconfigure tzdata
 
-10- finnaly i can configure Apache to my server
+9- finnaly i can configure Apache to my server
 
 sudo apt-get install apache2
 
 sudo service apache2 restart
 
-11- also if you need database you can use postgresql
+10- also if you need database you can use postgresql
 
 sudo apt-get install postgresql
 
-13- finnaly you can try to open machine with it's public-ip
+11- finnaly you can try to open machine with it's public-ip
 
 http://54.202.153.13/
