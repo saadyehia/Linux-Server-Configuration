@@ -36,13 +36,13 @@ e. now i want to add file to make authnticate from it, so i will take copy of pu
 
 mkdir .ssh
 
-nano .ssh/Authorized_keys
+nano .ssh/authorized_keys
 
 f. now make some security to this folder and file
 
 chmod 700 .ssh
 
-chmod 644 .ssh/Authorized_keys
+chmod 644 .ssh/authorized_keys
 
 e. now will restart ssh service 
 sudo service ssh restart
