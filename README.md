@@ -87,4 +87,4 @@ sudo apt-get install postgresql
 
 13- finnaly you can try to open machine with it's public-ip
 
-http://34.212.83.63/
+http://54.202.153.13/
