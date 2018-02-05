@@ -18,7 +18,9 @@ sudo apt-get update
 
 sudo apt-get upgrade
 
-b. First want to add account for you to use it when make remote access, will use command sudo adduser grader
+b. First want to add account for you to use it when make remote access, will use command 
+
+sudo adduser grader
 
 c. we need to add permisions to grader will make some commands to give sudo access to grader
 
@@ -44,16 +46,27 @@ chmod 700 .ssh
 
 chmod 644 .ssh/authorized_keys
 
+g- no i will change port-number it's using for "SSH" connection, will change it from 22 to 2200
+
+sudo nano /etc/ssh/sshd_config
+
 e. now will restart ssh service 
+
 sudo service ssh restart
 
 6- now i can try to open remote access to my server 
 
-ssh -i "private-key" grader@ip-address-of-server
+ssh -i "private-key" grader@52.88.111.55
 
-7- now i will enable firewall
+7- finnaly i can configure Apache to my server
 
-sudo ufw allow 22/tcp
+sudo apt-get install apache2
+
+sudo service apache2 restart
+
+8- now i will enable firewall
+
+sudo ufw allow 2200/tcp
 
 sudo ufw allow 80/tcp
 
@@ -61,17 +74,9 @@ sudo ufw allow 123/udp
 
 sudo ufw enable
 
-now i can change port 22 to 2200 for example and test it again.
-
-8- i can also change time zone of server 
+9- i can also change time zone of server 
 
 sudo dpkg-reconfigure tzdata
-
-9- finnaly i can configure Apache to my server
-
-sudo apt-get install apache2
-
-sudo service apache2 restart
 
 10- also if you need database you can use postgresql
 
@@ -79,4 +84,4 @@ sudo apt-get install postgresql
 
 11- finnaly you can try to open machine with it's public-ip
 
-http://54.202.153.13/
+http://52.88.111.55/
