@@ -156,4 +156,4 @@ sudo apachectl restart
 Step-Nine Test configuration => http://52.88.111.55/
 
 
-References https://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/
+Reference https://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/
