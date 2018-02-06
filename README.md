@@ -85,3 +85,75 @@ sudo apt-get install postgresql
 11- finnaly you can try to open machine with it's public-ip
 
 http://52.88.111.55/
+
+12- start Add Flask application to our server
+
+Step-One Install the apache webserver and mod_wsgi
+
+$ sudo apt-get update
+
+$ sudo apt-get install apache2
+
+$ sudo apt-get install libapache2-mod-wsgi
+
+Step-Two Install Flask using the pip tool (which also needs to be installed)
+
+$ sudo apt-get install python-pip
+
+$ sudo pip install flask
+
+Step-Three Create a directory for our Flask app
+
+We'll create a directory in our home directory to work in, and link to it from the site-root defined in apache's configuration /var/www/html 
+
+$ mkdir ~/flaskapp
+
+$ sudo ln -sT ~/flaskapp /var/www/html/flaskapp
+
+Step-Four Running a Flask app
+
+Put the following content in a file named flaskapp.py, i use "render_template" to open my projcet "html-file"
+
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+        return render_template('index.html')
+if __name__ == '__main__':
+  app.run()
+
+Step-Five create folder static for JS and CSS files and templates for html files, then put your files inside them
+
+$mkdir static templates
+
+Step-Six  Create a .wsgi file to load the app, Put the following content in a file named flaskapp.wsgi
+
+import sys
+sys.path.insert(0, '/var/www/html/flaskapp')
+
+from flaskapp import app as application
+
+Step-Seven Enable mod_wsgi => add the following block just after the DocumentRoot /var/www/html line
+
+$sudo nano/etc/apache2/sites-enabled/000-default.conf
+
+WSGIDaemonProcess flaskapp threads=5
+WSGIScriptAlias / /var/www/html/flaskapp/flaskapp.wsgi
+
+<Directory flaskapp>
+    WSGIProcessGroup flaskapp
+    WSGIApplicationGroup %{GLOBAL}
+    Order deny,allow
+    Allow from all
+</Directory>
+
+Step-Eight Restart the webserver
+
+sudo apachectl restart
+
+Step-Nine Test configuration => http://52.88.111.55/
+
+
+References https://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/
